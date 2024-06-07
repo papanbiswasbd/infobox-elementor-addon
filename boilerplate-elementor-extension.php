@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Boilerplate Elementor Extension
+ * Plugin Name: Infobox Elementor Addon
  * Description: Just the boilerplate code for creating a custom elementor extension.
  * Plugin URI:  https://rideout.studio
  * Version:     1.0.0
