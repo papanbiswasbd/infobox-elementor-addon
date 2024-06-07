@@ -220,6 +220,21 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					'selector' => '{{WRAPPER}} .ee--image-icon-box-wrapper',
 				]
 			);
+			$this->add_control(
+				'infobox_transition',
+				[
+					'label' => esc_html__( 'Transition', 'textdomain' ),
+					'type' => \Elementor\Controls_Manager::NUMBER,
+					'min' => 0,
+					'max' => 5,
+					'step' => 0.1,
+					'default' => 0.3,
+					'selectors' => [
+						'{{WRAPPER}} .ee--image-icon-main' => 'transition: {{UNIT}}s;',
+					],
+				]
+				
+			);
 		$this->end_controls_tab();
 
 
