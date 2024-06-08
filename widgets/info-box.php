@@ -33,7 +33,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Info Box', 'boilerplate-elementor-extension' );
+		return __( 'Info Box', 'infobox-elementor-addon' );
 	}
 
 	/**
@@ -77,7 +77,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => __( 'Content', 'boilerplate-elementor-extension' ),
+				'label' => __( 'Content', 'infobox-elementor-addon' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -138,8 +138,8 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Icon', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::ICONS,
 				'default' => [
-					'value' => 'fas fa-circle',
-					'library' => 'fa-solid',
+					'value' => 'fas fa-bell',
+					'library' => 'fa-regular',
 				],
 				'condition' => [
 					'infobox-icon-image' => 'icon',
@@ -191,11 +191,27 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				'default' => 'yes',
 			]
 		);
-
+		$this->add_control(
+			'imagebox_selected_icon',
+			array(
+				'label'            => __('Icon', 'textdomain'),
+				'type'             => \Elementor\Controls_Manager::ICONS,
+				'label_block'      => false,
+				'default'          => array(
+					'value'   => 'fas fa-external-link-alt',
+					'library' => 'fa-solid',
+				),
+				'skin'             => 'inline',
+				'condition' => [
+					'infobox-button' => 'yes',
+				],
+				
+			)
+		);
 		$this->add_control(
 			'infobox-button-title',
 			[
-				'label' => esc_html__( 'Label Text', 'textdomain' ),
+				'label' => esc_html__( 'Button Text', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'default' => esc_html__( 'Learn More', 'textdomain' ),
 				'condition' => [
@@ -915,6 +931,554 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 
 
 
+		$this->start_controls_section(
+			'info_box_content_style',
+			[
+				'label' => esc_html__( 'Content Style', 'textdomain' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+		$this->start_controls_tabs(
+			'typography_style_tabs'
+		);
+		$this->start_controls_tab(
+			'style_normal_tab_title',
+			[
+				'label' => esc_html__( 'Title', 'textdomain' ),
+			]
+		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'infobox_title_typography',
+				'selector' => '{{WRAPPER}} .ee--image-icon-box-heading',
+			]
+		);
+		$this->add_control(
+			'infobox_title_color',
+			[
+				'label' => esc_html__( 'Title Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-heading' => 'color: {{VALUE}}',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox_hover_title_color',
+			[
+				'label' => esc_html__( 'Title Hover Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-heading' => 'color: {{VALUE}}',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox_title_bg_color',
+			[
+				'label' => esc_html__( 'Title BG Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-heading' => 'background: {{VALUE}}',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox_title_hover_bg_color',
+			[
+				'label' => esc_html__( 'Title BG Hover Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-heading' => 'background: {{VALUE}}',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox_title_hover_border_color',
+			[
+				'label' => esc_html__( 'Title Border Hover Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-heading' => 'border-color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'infobox-title-padding',
+			[
+				'label' => esc_html__( 'Padding', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-heading' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox-title-margin',
+			[
+				'label' => esc_html__( 'Margin', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-heading' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'infobox_title_border',
+				'selector' => '{{WRAPPER}} .ee--image-icon-box-heading',
+			]
+		);
+		$this->add_control(
+			'infobox-title-border-radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-heading' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->end_controls_tab();
+
+
+
+
+
+
+
+
+
+
+
+
+		$this->start_controls_tab(
+			'style_normal_tab_typography',
+			[
+				'label' => esc_html__( 'Description', 'textdomain' ),
+			]
+		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'infobox_desc_typography',
+				'selector' => '{{WRAPPER}} .ee--image-icon-box-content',
+			]
+		);
+		$this->add_control(
+			'infobox_desc_color',
+			[
+				'label' => esc_html__( 'Description Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-content' => 'color: {{VALUE}}',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox_hover_desc_color',
+			[
+				'label' => esc_html__( 'Description Hover Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-content' => 'color: {{VALUE}}',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox_desc_bg_color',
+			[
+				'label' => esc_html__( 'Description BG Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-content' => 'background: {{VALUE}}',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox_desc_hover_bg_color',
+			[
+				'label' => esc_html__( 'Desc BG Hover Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-content' => 'background: {{VALUE}}',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox_desc_hover_border_color',
+			[
+				'label' => esc_html__( 'Desc Border Hover Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-content' => 'border-color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'infobox-desc-padding',
+			[
+				'label' => esc_html__( 'Padding', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox-desc-margin',
+			[
+				'label' => esc_html__( 'Margin', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'infobox_desc_border',
+				'selector' => '{{WRAPPER}} .ee--image-icon-box-content',
+			]
+		);
+		$this->add_control(
+			'infobox-desc-border-radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+		$this->end_controls_section();
+
+
+		$this->start_controls_section(
+			'infobox_button_style',
+			[
+				'label' => esc_html__( 'Button Style', 'textdomain' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'infobox-button' => 'yes',
+				],
+			]
+		);
+
+
+		$this->start_controls_tabs(
+			'button_style_tabs'
+		);
+		$this->start_controls_tab(
+			'style_normal_tab_button',
+			[
+				'label' => esc_html__( 'Normal', 'textdomain' ),
+			]
+		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'infobox_button_typography',
+				'selector' => '{{WRAPPER}} .ee--image-icon-box-button',
+			]
+		);
+		$this->add_control(
+			'infobox_button_color',
+			[
+				'label' => esc_html__( 'Button Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-button' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name' => 'background_for_button',
+				'types' => [ 'classic', 'gradient'],
+				'selector' => '{{WRAPPER}} .ee--image-icon-box-button',
+				'exclude'	=> ['image'],
+			]
+		);
+
+
+		$this->add_control(
+			'infobox-button-padding',
+			[
+				'label' => esc_html__( 'Padding', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox-button-margin',
+			[
+				'label' => esc_html__( 'Margin', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'infobox_button_border',
+				'selector' => '{{WRAPPER}} .ee--image-icon-box-button',
+			]
+		);
+		$this->add_control(
+			'infobox-button-border-radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_control(
+			'hr',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+			]
+		);
+		$this->add_control(
+			'infobox_button_icon_color',
+			[
+				'label' => esc_html__( 'Button Icon Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--button-icon' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ee--button-icon' => 'fill: {{VALUE}}',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox_button_icon_width',
+			[
+				'label' => esc_html__( 'Icon Size', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 14,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--button-icon' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox_button_icon_spacing',
+			[
+				'label' => esc_html__( 'Icon Spacing', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--button-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+		$this->end_controls_tab();
+
+
+
+
+
+
+
+
+
+
+
+
+		$this->start_controls_tab(
+			'style_normal_tab_button_hover',
+			[
+				'label' => esc_html__( 'Hover', 'textdomain' ),
+			]
+		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'infobox_button_typography_hover',
+				'selector' => '{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-button',
+			]
+		);
+		$this->add_control(
+			'infobox_button_color_hover',
+			[
+				'label' => esc_html__( 'Button Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-button' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name' => 'background_for_button_hover',
+				'types' => [ 'classic', 'gradient'],
+				'selector' => '{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-button',
+				'exclude'	=> ['image'],
+			]
+		);
+
+
+		$this->add_control(
+			'infobox-button-padding-hover',
+			[
+				'label' => esc_html__( 'Padding', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox-button-margin-hover',
+			[
+				'label' => esc_html__( 'Margin', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'infobox_button_border_hover',
+				'selector' => '{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-button',
+			]
+		);
+		$this->add_control(
+			'infobox-button-border-radius-hover',
+			[
+				'label' => esc_html__( 'Border Radius', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox_button_icon_color_hover',
+			[
+				'label' => esc_html__( 'Button Hover Icon Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--button-icon' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--button-icon' => 'fill: {{VALUE}}',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox_button_icon_spacing_hover',
+			[
+				'label' => esc_html__( 'Icon Hover Spacing', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--button-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+
+
+
+		$this->end_controls_section();
+
+
+
 
 
 
@@ -966,7 +1530,10 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 							$this->add_link_attributes( 'infobox_button_link', $settings['infobox_button_link'] );
 						}
 					?>
-                    <a <?php $this->print_render_attribute_string( 'infobox_button_link' );?> class="ee-button ee--image-icon-box-button"><span class="ee--button-icon"><i class="fa-brands fa-facebook-f"></i></span><?php echo $settings['infobox-button-title']; ?></a>
+					<?php if ( 'yes' === $settings['infobox-button'] ) { ?>
+						<a <?php $this->print_render_attribute_string( 'infobox_button_link' );?> class="ee-button ee--image-icon-box-button"><span class="ee--button-icon"><?php \Elementor\Icons_Manager::render_icon( $settings['imagebox_selected_icon'], [ 'aria-hidden' => 'true' ] ); ?></span><?php echo $settings['infobox-button-title']; ?></a>
+					<?php }?>
+                    
                 </div>
             </div>
 

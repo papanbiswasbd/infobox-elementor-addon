@@ -2,11 +2,11 @@
 /**
  * Plugin Name: Infobox Elementor Addon
  * Description: Just the boilerplate code for creating a custom elementor extension.
- * Plugin URI:  https://rideout.studio
+ * Plugin URI:  https://papanbiswas.com/
  * Version:     1.0.0
- * Author:      Matthew Rideout
- * Author URI:  https://rideout.studio
- * Text Domain: boilerplate-elementor-extension
+ * Author:      Papan Biswas
+ * Author URI:  https://papanbiswas.com/
+ * Text Domain: papanbiswasbd
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,7 +23,7 @@ include('widget-categories.php');
  *
  * @since 1.0.0
  */
-final class Boilerplate_Elementor_Extension {
+final class IEA {
 
 	/**
 	 * Plugin Version
@@ -60,7 +60,7 @@ final class Boilerplate_Elementor_Extension {
 	 * @access private
 	 * @static
 	 *
-	 * @var Boilerplate_Elementor_Extension The single instance of the class.
+	 * @var IEA The single instance of the class.
 	 */
 	private static $_instance = null;
 
@@ -74,7 +74,7 @@ final class Boilerplate_Elementor_Extension {
 	 * @access public
 	 * @static
 	 *
-	 * @return Boilerplate_Elementor_Extension An instance of the class.
+	 * @return IEA An instance of the class.
 	 */
 	public static function instance() {
 
@@ -111,7 +111,7 @@ final class Boilerplate_Elementor_Extension {
 	 */
 	public function i18n() {
 
-		load_plugin_textdomain( 'boilerplate-elementor-extension' );
+		load_plugin_textdomain( 'papanbiswasbd' );
 
 	}
 
@@ -285,9 +285,9 @@ final class Boilerplate_Elementor_Extension {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
-			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'boilerplate-elementor-extension' ),
-			'<strong>' . esc_html__( 'Elementor Test Extension', 'boilerplate-elementor-extension' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'boilerplate-elementor-extension' ) . '</strong>'
+			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'infobox-elementor-addon' ),
+			'<strong>' . esc_html__( 'Elementor Test Extension', 'infobox-elementor-addon' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor', 'infobox-elementor-addon' ) . '</strong>'
 		);
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
@@ -309,9 +309,9 @@ final class Boilerplate_Elementor_Extension {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'boilerplate-elementor-extension' ),
-			'<strong>' . esc_html__( 'Elementor Test Extension', 'boilerplate-elementor-extension' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'boilerplate-elementor-extension' ) . '</strong>',
+			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'infobox-elementor-addon' ),
+			'<strong>' . esc_html__( 'Elementor Test Extension', 'infobox-elementor-addon' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor', 'infobox-elementor-addon' ) . '</strong>',
 			 self::MINIMUM_ELEMENTOR_VERSION
 		);
 
@@ -334,9 +334,9 @@ final class Boilerplate_Elementor_Extension {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'boilerplate-elementor-extension' ),
-			'<strong>' . esc_html__( 'Elementor Test Extension', 'boilerplate-elementor-extension' ) . '</strong>',
-			'<strong>' . esc_html__( 'PHP', 'boilerplate-elementor-extension' ) . '</strong>',
+			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'infobox-elementor-addon' ),
+			'<strong>' . esc_html__( 'Elementor Test Extension', 'infobox-elementor-addon' ) . '</strong>',
+			'<strong>' . esc_html__( 'PHP', 'infobox-elementor-addon' ) . '</strong>',
 			 self::MINIMUM_PHP_VERSION
 		);
 
@@ -346,4 +346,4 @@ final class Boilerplate_Elementor_Extension {
 
 }
 
-Boilerplate_Elementor_Extension::instance();
+IEA::instance();

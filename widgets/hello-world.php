@@ -33,7 +33,7 @@ class Hello_World_Widget extends \Elementor\Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Hello World', 'boilerplate-elementor-extension' );
+		return __( 'Hello World', 'infobox-elementor-addon' );
 	}
 
 	/**
@@ -77,7 +77,7 @@ class Hello_World_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => __( 'Content', 'boilerplate-elementor-extension' ),
+				'label' => __( 'Content', 'infobox-elementor-addon' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -85,27 +85,27 @@ class Hello_World_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'text',
 			[
-				'label' => __( 'Text To Display', 'boilerplate-elementor-extension' ),
+				'label' => __( 'Text To Display', 'infobox-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'input_type' => 'text',
-				'placeholder' => __( 'Hello World', 'boilerplate-elementor-extension' ),
+				'placeholder' => __( 'Hello World', 'infobox-elementor-addon' ),
 			]
         );
         
         $this->add_control(
 			'text_heading_type',
 			[
-				'label' => __( 'Heading Type', 'boilerplate-elementor-extension' ),
+				'label' => __( 'Heading Type', 'infobox-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default' => 'H2',
 				'options' => [
-                    'p' => __( 'p', 'boilerplate-elementor-extension'),
-					'H1' => __( 'H1', 'boilerplate-elementor-extension'),
-					'H2' => __( 'H2', 'boilerplate-elementor-extension'),
-					'H3' => __( 'H3', 'boilerplate-elementor-extension'),
-					'H4' => __( 'H4', 'boilerplate-elementor-extension'),
-					'H5' => __( 'H5', 'boilerplate-elementor-extension'),
-					'H6' => __( 'H6', 'boilerplate-elementor-extension'),
+                    'p' => __( 'p', 'infobox-elementor-addon'),
+					'H1' => __( 'H1', 'infobox-elementor-addon'),
+					'H2' => __( 'H2', 'infobox-elementor-addon'),
+					'H3' => __( 'H3', 'infobox-elementor-addon'),
+					'H4' => __( 'H4', 'infobox-elementor-addon'),
+					'H5' => __( 'H5', 'infobox-elementor-addon'),
+					'H6' => __( 'H6', 'infobox-elementor-addon'),
 				]
 			]
 		);

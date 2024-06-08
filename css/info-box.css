@@ -60,3 +60,20 @@ span.ee--image-icon-box-label {
 .ee--image-icon-main svg{
     width: 40px;
 }
+.ee--image-icon-box-heading {
+    display: inline-block;
+    font-size: 26px;
+}
+.ee--button-icon {
+    display: inline-block;
+    color: #824deb;
+    fill: #824deb;
+    margin-right: 5px;
+}
+.ee--button-icon svg {
+    min-width: 14px;
+}
+.ee--image-icon-box-wrapper:hover .ee--button-icon{
+    color: #f1eeff;
+    fill: #f1eeff;
+}

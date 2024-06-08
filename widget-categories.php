@@ -4,7 +4,7 @@ function add_elementor_widget_categories( $elements_manager ) {
     $elements_manager->add_category(
         'Boilerplate',
         [
-            'title' => __( 'Boilerplate', 'boilerplate-elementor-extension' ),
+            'title' => __( 'Boilerplate', 'infobox-elementor-addon' ),
             'icon' => 'fas fa-temperature-high',
         ]
     );
