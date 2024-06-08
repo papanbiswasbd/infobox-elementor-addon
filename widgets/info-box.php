@@ -128,9 +128,6 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				],
 				'default' => 'icon',
 				'toggle' => true,
-				'selectors' => [
-					'{{WRAPPER}} .your-class' => 'text-align: {{VALUE}};',
-				],
 			]
 		);
 
@@ -162,6 +159,69 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				],
 			]
 		);
+
+		$this->add_control(
+			'infobox_title',
+			[
+				'label' => esc_html__( 'Title', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'This is Awesome', 'textdomain' ),
+				'placeholder' => esc_html__( 'Type Info Box Title', 'textdomain' ),
+				'label_block' => true,
+			]
+		);
+		$this->add_control(
+			'infobox_description',
+			[
+				'label' => esc_html__( 'Description', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'rows' => 10,
+				'default' => esc_html__( 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit corporis incidunt veritatis perspiciatis non aspernatur cum illum ipsum quam dignissimos!', 'textdomain' ),
+				'placeholder' => esc_html__( 'Type your description here', 'textdomain' ),
+			]
+		);
+		$this->add_control(
+			'infobox-button',
+			[
+				'label' => esc_html__( 'Enable Button', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Show', 'textdomain' ),
+				'label_off' => esc_html__( 'Hide', 'textdomain' ),
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+		);
+
+		$this->add_control(
+			'infobox-button-title',
+			[
+				'label' => esc_html__( 'Label Text', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Learn More', 'textdomain' ),
+				'condition' => [
+					'infobox-button' => 'yes',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox_button_link',
+			[
+				'label' => esc_html__( 'Button Link', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::URL,
+				'options' => [ 'url', 'is_external', 'nofollow' ],
+				'default' => [
+					'url' => '#',
+					'is_external' => false,
+					'nofollow' => false,
+					// 'custom_attributes' => '',
+				],
+				'label_block' => true,
+				'condition' => [
+					'infobox-button' => 'yes',
+				],
+			]
+		);
+
 
 		$this->end_controls_section();
 
@@ -284,6 +344,102 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
 		$this->end_controls_section();
+
+
+		$this->start_controls_section(
+			'infobox_label_style',
+			[
+				'label' => esc_html__( 'Label Style', 'textdomain' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'infobox-label' => 'yes',
+				],
+			]
+		);
+
+		$this->add_control(
+				'infobox-label-padding',
+				[
+					'label' => esc_html__( 'Padding', 'textdomain' ),
+					'type' => \Elementor\Controls_Manager::DIMENSIONS,
+					'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+					'default' => [
+						'isLinked' => true,
+					],
+					'selectors' => [
+						'{{WRAPPER}} span.ee--image-icon-box-label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					],
+				]
+			);
+			$this->add_control(
+				'infobox-label-margin',
+				[
+					'label' => esc_html__( 'Margin', 'textdomain' ),
+					'type' => \Elementor\Controls_Manager::DIMENSIONS,
+					'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+					'default' => [
+						'isLinked' => true,
+					],
+					'selectors' => [
+						'{{WRAPPER}} span.ee--image-icon-box-label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					],
+				]
+			);
+			$this->add_control(
+				'infobox_label_color',
+				[
+					'label' => esc_html__( 'Label Color', 'textdomain' ),
+					'type' => \Elementor\Controls_Manager::COLOR,
+					'selectors' => [
+						'{{WRAPPER}} span.ee--image-icon-box-label' => 'color: {{VALUE}}',
+					],
+				]
+			);
+			$this->add_group_control(
+				\Elementor\Group_Control_Background::get_type(),
+				[
+					'name' => 'background_for_label',
+					'types' => [ 'classic', 'gradient'],
+					'selector' => '{{WRAPPER}} span.ee--image-icon-box-label',
+					'exclude'	=> ['image'],
+				]
+			);
+
+			$this->add_group_control(
+				\Elementor\Group_Control_Border::get_type(),
+				[
+					'name' => 'infobox_label_border',
+					'selector' => '{{WRAPPER}} span.ee--image-icon-box-label',
+				]
+			);
+			$this->add_control(
+				'infobox-label-border-radius',
+				[
+					'label' => esc_html__( 'Border Radius', 'textdomain' ),
+					'type' => \Elementor\Controls_Manager::DIMENSIONS,
+					'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+					'default' => [
+						'isLinked' => true,
+					],
+					'selectors' => [
+						'{{WRAPPER}} span.ee--image-icon-box-label' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					],
+				]
+			);
+
+
+
+
+
+
+
+
+
+
+
+		$this->end_controls_section();
+
+
 
 
 
@@ -803,9 +959,14 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
                 
 
                 <div class="ee--image-icon-box-content-wrapper">
-                    <h2 class="ee--image-icon-box-heading">This is Heading</h2>
-                    <p class="ee--image-icon-box-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit corporis incidunt veritatis perspiciatis non aspernatur cum illum ipsum quam dignissimos!</p>
-                    <a href="#" class="ee-button ee--image-icon-box-button"><span class="ee--button-icon"><i class="fa-brands fa-facebook-f"></i></span>Learn More</a>
+                    <h2 class="ee--image-icon-box-heading"><?php echo $settings['infobox_title']; ?></h2>
+                    <p class="ee--image-icon-box-content"><?php echo $settings['infobox_description']; ?></p>
+					<?php
+						if ( ! empty( $settings['infobox_button_link']['url'] ) ) {
+							$this->add_link_attributes( 'infobox_button_link', $settings['infobox_button_link'] );
+						}
+					?>
+                    <a <?php $this->print_render_attribute_string( 'infobox_button_link' );?> class="ee-button ee--image-icon-box-button"><span class="ee--button-icon"><i class="fa-brands fa-facebook-f"></i></span><?php echo $settings['infobox-button-title']; ?></a>
                 </div>
             </div>
 
