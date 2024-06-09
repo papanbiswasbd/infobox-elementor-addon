@@ -75,6 +75,35 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 	protected function _register_controls() {
 
 		$this->start_controls_section(
+			'infobox_section_layout_style',
+			[
+				'label' => __( 'Layout Style', 'infobox-elementor-addon' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+		$this->add_control(
+			'infobox_layout_style',
+			[
+				'label' => esc_html__( 'Layout', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'style-1',
+				'options' => [
+					'style-1' => esc_html__( 'Style 1', 'textdomain' ),
+					'style-2'  => esc_html__( 'Style 2', 'textdomain' ),
+					'style-3' => esc_html__( 'Style 3', 'textdomain' ),
+					'style-4' => esc_html__( 'Style 4', 'textdomain' ),
+					'style-5' => esc_html__( 'Style 5', 'textdomain' ),
+				],
+			]
+		);
+
+
+
+
+		$this->end_controls_section();
+
+
+		$this->start_controls_section(
 			'content_section',
 			[
 				'label' => __( 'Content', 'infobox-elementor-addon' ),
@@ -106,6 +135,19 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'infobox_image',
+			[
+				'label' => esc_html__( 'Choose Image', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+					'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+				'condition' => [
+					'infobox_layout_style' => 'style-2',
+				],
+			]
+		);
 
 		$this->add_control(
 			'infobox-icon-image',
@@ -127,7 +169,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					],
 				],
 				'default' => 'icon',
-				'toggle' => true,
+				'toggle' => false,
 			]
 		);
 
@@ -209,6 +251,28 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 			)
 		);
 		$this->add_control(
+			'infobox-icon-position',
+			[
+				'label' => esc_html__( 'Icon Position', 'papanbiswasbd' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'papanbiswasbd' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'papanbiswasbd' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'default' => 'left',
+				'toggle' => false,
+				'condition' => [
+					'infobox-button' => 'yes',
+				],
+			]
+		);
+		$this->add_control(
 			'infobox-button-title',
 			[
 				'label' => esc_html__( 'Button Text', 'papanbiswasbd' ),
@@ -248,6 +312,32 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Infobox Style', 'papanbiswasbd' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+		$this->add_control(
+			'infobox_wrapper_alignment_style',
+			[
+				'label' => esc_html__( 'Alignment', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'textdomain' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'textdomain' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'textdomain' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'default' => 'center',
+				'toggle' => false,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-wrapper' => 'text-align: {{VALUE}};',
+				],
 			]
 		);
 		$this->start_controls_tabs(
@@ -372,6 +462,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				],
 			]
 		);
+
 
 		$this->add_control(
 				'infobox-label-padding',
@@ -501,6 +592,23 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 						],
 					]
 				);
+				$this->add_control(
+					'infobox_icon_rotation',
+					[
+						'label' => esc_html__( 'Icon Rotation', 'papanbiswasbd' ),
+						'type' => \Elementor\Controls_Manager::SLIDER,
+						'range' => [
+							'px' => [
+								'min' => 1,
+								'max' => 360,
+								'step' => 1,
+							],
+						],
+						'selectors' => [
+							'{{WRAPPER}} .ee--image-icon-main' => 'transform: rotate({{SIZE}}deg);',
+						],
+					]
+				);
 
 				$this->add_control(
 					'infobox-icon-padding',
@@ -536,8 +644,8 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 						'label' => esc_html__( 'Icon Color', 'papanbiswasbd' ),
 						'type' => \Elementor\Controls_Manager::COLOR,
 						'selectors' => [
-							'{{WRAPPER}} .ee--image-icon-main' => 'color: {{VALUE}}',
 							'{{WRAPPER}} .ee--image-icon-main' => 'fill: {{VALUE}}',
+							'{{WRAPPER}} .ee--image-icon-main' => 'color: {{VALUE}}',
 						],
 					]
 				);
@@ -571,7 +679,13 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 						],
 					]
 				);
-
+				$this->add_group_control(
+					\Elementor\Group_Control_Box_Shadow::get_type(),
+					[
+						'name' => 'infobox_icon_box_shadow',
+						'selector' => '{{WRAPPER}} .ee--image-icon-main',
+					]
+				);
 
 
 
@@ -607,6 +721,23 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					]
 				);
 				$this->add_control(
+					'infobox_icon_rotation_hover',
+					[
+						'label' => esc_html__( 'Icon Rotation', 'papanbiswasbd' ),
+						'type' => \Elementor\Controls_Manager::SLIDER,
+						'range' => [
+							'px' => [
+								'min' => 1,
+								'max' => 360,
+								'step' => 1,
+							],
+						],
+						'selectors' => [
+							'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-main' => 'transform: rotate({{SIZE}}deg);',
+						],
+					]
+				);
+				$this->add_control(
 					'infobox-icon-padding-hover',
 					[
 						'label' => esc_html__( 'Padding', 'papanbiswasbd' ),
@@ -626,8 +757,8 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 						'label' => esc_html__( 'Icon Color', 'papanbiswasbd' ),
 						'type' => \Elementor\Controls_Manager::COLOR,
 						'selectors' => [
-							'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-main' => 'color: {{VALUE}}',
 							'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-main' => 'fill: {{VALUE}}',
+							'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-main' => 'color: {{VALUE}}',
 						],
 					]
 				);
@@ -659,6 +790,13 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 						'selectors' => [
 							'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-main' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 						],
+					]
+				);
+				$this->add_group_control(
+					\Elementor\Group_Control_Box_Shadow::get_type(),
+					[
+						'name' => 'infobox_icon_box_shadow',
+						'selector' => '{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-main',
 					]
 				);
 
@@ -770,6 +908,20 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 						],
 					]
 				);
+				$this->add_control(
+					'infobox-image-margin',
+					[
+						'label' => esc_html__( 'Margin', 'papanbiswasbd' ),
+						'type' => \Elementor\Controls_Manager::DIMENSIONS,
+						'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+						'default' => [
+							'isLinked' => true,
+						],
+						'selectors' => [
+							'{{WRAPPER}} .ee--image-icon-main-image img' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+						],
+					]
+				);
 
 				$this->add_group_control(
 					\Elementor\Group_Control_Background::get_type(),
@@ -801,7 +953,13 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 						],
 					]
 				);
-
+				$this->add_group_control(
+					\Elementor\Group_Control_Box_Shadow::get_type(),
+					[
+						'name' => 'infobox_image_box_shadow',
+						'selector' => '{{WRAPPER}} .ee--image-icon-main-image img',
+					]
+				);
 
 
 
@@ -889,6 +1047,20 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 						],
 					]
 				);
+				$this->add_control(
+					'infobox-image-margin-hover',
+					[
+						'label' => esc_html__( 'Margin', 'papanbiswasbd' ),
+						'type' => \Elementor\Controls_Manager::DIMENSIONS,
+						'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+						'default' => [
+							'isLinked' => true,
+						],
+						'selectors' => [
+							'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-main-image img' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+						],
+					]
+				);
 
 				$this->add_group_control(
 					\Elementor\Group_Control_Background::get_type(),
@@ -918,6 +1090,13 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 						'selectors' => [
 							'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-main-image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 						],
+					]
+				);
+				$this->add_group_control(
+					\Elementor\Group_Control_Box_Shadow::get_type(),
+					[
+						'name' => 'infobox_image_box_shadow',
+						'selector' => '{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-main-image img',
 					]
 				);
 
@@ -1199,7 +1378,24 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				],
 			]
 		);
-
+		$this->add_control(
+			'infobox_button_width',
+			[
+				'label' => esc_html__( 'Button Width', 'papanbiswasbd' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ '%' ],
+				'range' => [
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-button' => 'width: {{SIZE}}%;',
+				],
+			]
+		);
 
 		$this->start_controls_tabs(
 			'button_style_tabs'
@@ -1325,7 +1521,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 			]
 		);
 		$this->add_control(
-			'infobox_button_icon_spacing',
+			'infobox_button_icon_spacing_left',
 			[
 				'label' => esc_html__( 'Icon Spacing', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::SLIDER,
@@ -1338,10 +1534,35 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ee--button-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .ee-button' => 'gap: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'infobox-icon-position' => 'left',
 				],
 			]
 		);
+		$this->add_control(
+			'infobox_button_icon_spacing_right',
+			[
+				'label' => esc_html__( 'Icon Spacing', 'papanbiswasbd' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee-button' => 'gap: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'infobox-icon-position' => 'right',
+				],
+			]
+		);
+		
 		$this->end_controls_tab();
 
 
@@ -1496,31 +1717,28 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 	protected function render() {
 
 		$settings = $this->get_settings_for_display();
-		
+		$style_1 = $settings['infobox_layout_style'];
 
 
 		?>
 
-			<div class="ee--common-card ee--main ee--image-icon-box-wrapper">
-				<?php	
-					if ( 'yes' === $settings['infobox-label'] ) {
-						echo '<span class="ee--image-icon-box-label">' . $settings['infobox-label-title'] . '</span>';
-					}
-				?>
 
-				<?php	
-					if ( 'icon' === $settings['infobox-icon-image'] ) {
-						echo '<div class="ee--image-icon-main">'?> 
-							<?php \Elementor\Icons_Manager::render_icon( $settings['infobox-icon'], [ 'aria-hidden' => 'true' ] ); ?>
-						<?php echo '</div>';
+			<div class="ee--common-card ee--main ee--image-icon-box-wrapper <?php echo $style_1;?>">
+				<?php	if ( 'yes' === $settings['infobox-label'] ) {
+					echo '<span class="ee--image-icon-box-label">' . $settings['infobox-label-title'] . '</span>';
+				} ?>
+				<?php if ( 'style-2' === $settings['infobox_layout_style'] ) {?>
+					<?php echo '<div class="ee--infobox-primary-image"><img src="' . $settings['infobox_image']['url'] . '" alt=""></div>';?>
+				<?php }?>
+
+				<?php if ( 'icon' === $settings['infobox-icon-image'] ) {
+					echo '<div class="ee--image-icon-main">'?> 
+						<?php \Elementor\Icons_Manager::render_icon( $settings['infobox-icon'], [ 'aria-hidden' => 'true' ] ); ?>
+					<?php echo '</div>';
 					}
 					if ( 'image' === $settings['infobox-icon-image'] ) {
-						echo '<div class="ee--image-icon-main-image"><img src="' . $settings['infobox-image']['url'] . '" alt=""></div>';
-					}
-					
-				?>
-				
-                
+					echo '<div class="ee--image-icon-main-image"><img src="' . $settings['infobox-image']['url'] . '" alt=""></div>';
+				} ?>
 
                 <div class="ee--image-icon-box-content-wrapper">
                     <h2 class="ee--image-icon-box-heading"><?php echo $settings['infobox_title']; ?></h2>
@@ -1531,11 +1749,28 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 						}
 					?>
 					<?php if ( 'yes' === $settings['infobox-button'] ) { ?>
-						<a <?php $this->print_render_attribute_string( 'infobox_button_link' );?> class="ee-button ee--image-icon-box-button"><span class="ee--button-icon"><?php \Elementor\Icons_Manager::render_icon( $settings['imagebox_selected_icon'], [ 'aria-hidden' => 'true' ] ); ?></span><?php echo $settings['infobox-button-title']; ?></a>
+						<a <?php $this->print_render_attribute_string( 'infobox_button_link' );?> class="ee-button ee--image-icon-box-button">
+							<?php if ( 'left' === $settings['infobox-icon-position'] ) { ?>
+								<span class="ee--button-icon"><?php \Elementor\Icons_Manager::render_icon( $settings['imagebox_selected_icon'], [ 'aria-hidden' => 'true' ] ); ?></span>
+							<?php }?>
+								<?php echo $settings['infobox-button-title']; ?>
+							<?php if ( 'right' === $settings['infobox-icon-position'] ) { ?>
+								<span class="ee--button-icon"><?php \Elementor\Icons_Manager::render_icon( $settings['imagebox_selected_icon'], [ 'aria-hidden' => 'true' ] ); ?></span>
+							<?php }?>
+						</a>
 					<?php }?>
-                    
                 </div>
             </div>
+
+		
+
+
+
+
+		<?php if ( 'style_2' === $settings['infobox_layout_style'] ) {?><?php echo "Style 2 Coming Soon"?><?php }?>
+		<?php if ( 'style_3' === $settings['infobox_layout_style'] ) {?><?php echo "Style 3 Coming Soon"?><?php }?>
+		<?php if ( 'style_4' === $settings['infobox_layout_style'] ) {?><?php echo "Style 4 Coming Soon"?><?php }?>
+		<?php if ( 'style_5' === $settings['infobox_layout_style'] ) {?><?php echo "Style 5 Coming Soon"?><?php }?>
 
 		<?php
 

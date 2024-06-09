@@ -1,12 +1,15 @@
 .ee-button {
-    text-decoration: none;
     font-size: 18px;
     background: #f1eeff;
     color: #824deb;
-    padding: 10px 30px;
-    display: inline-block;
+    padding: 15px 30px;
     border-radius: 4px;
     transition: 0.3s;
+    line-height: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 .ee--common-card:hover .ee-button {
     background: #824deb;
@@ -17,7 +20,7 @@ span.ee--button-icon i {
     font-size: 16px;
 }
 .ee--common-card {
-    padding: 40px;
+    padding: 20px;
     border: 1px solid #f1eeff;
     border-radius: 4px;
 }
@@ -34,6 +37,7 @@ span.ee--button-icon i {
     position: relative;
     transition: 0.3s;
 }
+
 span.ee--image-icon-box-label {
     position: absolute;
     left: 20px;
@@ -44,6 +48,7 @@ span.ee--image-icon-box-label {
     border-radius: 4px;
     font-size: 16px;
     font-weight: 400;
+    z-index: 1;
 }
 .ee--image-icon-main {
     font-size: 28px;
@@ -60,6 +65,9 @@ span.ee--image-icon-box-label {
 .ee--image-icon-main svg{
     width: 40px;
 }
+.ee--image-icon-main-image img{
+    width: 120px;
+}
 .ee--image-icon-box-heading {
     display: inline-block;
     font-size: 26px;
@@ -68,7 +76,6 @@ span.ee--image-icon-box-label {
     display: inline-block;
     color: #824deb;
     fill: #824deb;
-    margin-right: 5px;
 }
 .ee--button-icon svg {
     min-width: 14px;
@@ -76,4 +83,30 @@ span.ee--image-icon-box-label {
 .ee--image-icon-box-wrapper:hover .ee--button-icon{
     color: #f1eeff;
     fill: #f1eeff;
+}
+
+
+
+
+
+
+
+/****************
+Infobox Style 2
+******************/
+.style-2 .ee--infobox-primary-image img {
+    max-width: 100%;
+    transition: 0.3s;
+}
+.style-2  .ee--infobox-primary-image {
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.style-2 .ee--image-icon-main, .style-2 .ee--image-icon-main-image img {
+    margin-top: -50px;
+    position: relative;
+}
+.style-2:hover .ee--infobox-primary-image img {
+    scale: 1.2;
 }
