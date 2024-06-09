@@ -2,9 +2,9 @@
 function add_elementor_widget_categories( $elements_manager ) {
 
     $elements_manager->add_category(
-        'Boilerplate',
+        'papanbiswasbd',
         [
-            'title' => __( 'Boilerplate', 'infobox-elementor-addon' ),
+            'title' => __( 'Papanbiswasbd', 'infobox-elementor-addon' ),
             'icon' => 'fas fa-temperature-high',
         ]
     );

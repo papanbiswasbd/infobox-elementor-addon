@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Infobox Elementor Addon
- * Description: Just the boilerplate code for creating a custom elementor extension.
+ * Description: Infobox Elementor Addon for creating a custom elementor extension.
  * Plugin URI:  https://papanbiswas.com/
  * Version:     1.0.0
  * Author:      Papan Biswas
@@ -210,7 +210,7 @@ final class IEA {
 		// wp_enqueue_style( 'widget-1', plugins_url( 'css/widget-1.css', __FILE__ ) );
 		// wp_enqueue_style( 'widget-2', plugins_url( 'css/widget-2.css', __FILE__ ) );
 
-        wp_enqueue_style( 'Hello World', plugins_url( 'css/hello-world.css', __FILE__ ) );
+      //  wp_enqueue_style( 'Hello World', plugins_url( 'css/hello-world.css', __FILE__ ) );
         wp_enqueue_style( 'Info Box', plugins_url( 'css/info-box.css', __FILE__ ) );
     }
     
@@ -246,7 +246,7 @@ final class IEA {
 		require_once( __DIR__ . '/widgets/info-box.php' );
 
 		// Register widget
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Hello_World_Widget() );
+		// \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Hello_World_Widget() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Info_Box_Widget() );
 
 	}
@@ -286,7 +286,7 @@ final class IEA {
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
 			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'infobox-elementor-addon' ),
-			'<strong>' . esc_html__( 'Elementor Test Extension', 'infobox-elementor-addon' ) . '</strong>',
+			'<strong>' . esc_html__( 'Info Box Elementor Addon', 'infobox-elementor-addon' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor', 'infobox-elementor-addon' ) . '</strong>'
 		);
 

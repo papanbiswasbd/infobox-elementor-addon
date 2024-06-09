@@ -1,4 +1,4 @@
-# Boilerplate Elementor Extension
+# Infobox Elementor Extension
 The basic code needed to create a custom elementor extension plugin with a single Hello World elementor widget.
 
 ## To Customize For Your Needs
