@@ -84,9 +84,127 @@ span.ee--image-icon-box-label {
     color: #f1eeff;
     fill: #f1eeff;
 }
-
-
-
+.ee--image-icon-box-wrapper::after{
+    background: #824deb;
+    transition: 0.3s;
+}
+.hover-effect-1.ee--image-icon-box-wrapper::after {
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    border-radius: 0px 0 4px 4px;
+}
+.hover-effect-1.ee--image-icon-box-wrapper:hover::after{
+    width: 100%;
+}
+.hover-effect-2.ee--image-icon-box-wrapper::after {
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 0%;
+    left: 0%;
+    bottom: 0;
+    border-radius: 0px 0 4px 4px;
+}
+.hover-effect-2.ee--image-icon-box-wrapper:hover::after{
+    width: 100%;
+}
+.hover-effect-3.ee--image-icon-box-wrapper::after {
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 0%;
+    right: 0%;
+    bottom: 0;
+    border-radius: 0px 0 4px 4px;
+}
+.hover-effect-3.ee--image-icon-box-wrapper:hover::after{
+    width: 100%;
+}
+.hover-effect-4.ee--image-icon-box-wrapper::after {
+    content: '';
+    position: absolute;
+    height: 0px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    border-radius: 4px;
+    z-index: -1;
+}
+.hover-effect-4.ee--image-icon-box-wrapper:hover::after{
+    height: 100%;
+}
+.hover-effect-5.ee--image-icon-box-wrapper::after {
+    content: '';
+    position: absolute;
+    height: 0px;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 4px;
+    z-index: -1;
+}
+.hover-effect-5.ee--image-icon-box-wrapper:hover::after{
+    height: 100%;
+}
+.hover-effect-6.ee--image-icon-box-wrapper::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    left: 0;
+    bottom: 0;
+    border-radius: 4px;
+    z-index: -1;
+}
+.hover-effect-6.ee--image-icon-box-wrapper:hover::after{
+    width: 100%;
+}
+.hover-effect-7.ee--image-icon-box-wrapper::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    right: 0;
+    bottom: 0;
+    border-radius: 4px;
+    z-index: -1;
+}
+.hover-effect-7.ee--image-icon-box-wrapper:hover::after{
+    width: 100%;
+}
+.hover-effect-8.ee--image-icon-box-wrapper::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    border-radius: 4px;
+    z-index: -1;
+}
+.hover-effect-8.ee--image-icon-box-wrapper:hover::after{
+    width: 100%;
+}
+.hover-effect-9.ee--image-icon-box-wrapper::after {
+    content: '';
+    position: absolute;
+    height: 0%;
+    width: 100%;
+    left: 0;
+    transform: translateY(50%);
+    bottom: 50%;
+    border-radius: 4px;
+    z-index: -1;
+}
+.hover-effect-9.ee--image-icon-box-wrapper:hover::after{
+    height: 100%;
+}
 
 
 

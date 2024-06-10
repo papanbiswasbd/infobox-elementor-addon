@@ -96,7 +96,40 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				],
 			]
 		);
+		$this->add_control(
+			'infobox_layout_style_hover_effect',
+			[
+				'label' => esc_html__( 'Hover Effects', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => '',
+				'options' => [
+					'' => esc_html__( 'Default', 'textdomain' ),
+					'hover-effect-1'  => esc_html__( 'Effect 1', 'textdomain' ),
+					'hover-effect-2' => esc_html__( 'Effect 2', 'textdomain' ),
+					'hover-effect-3' => esc_html__( 'Effect 3', 'textdomain' ),
+					'hover-effect-4' => esc_html__( 'Effect 4', 'textdomain' ),
+					'hover-effect-5' => esc_html__( 'Effect 5', 'textdomain' ),
+					'hover-effect-6' => esc_html__( 'Effect 6', 'textdomain' ),
+					'hover-effect-7' => esc_html__( 'Effect 7', 'textdomain' ),
+					'hover-effect-8' => esc_html__( 'Effect 8', 'textdomain' ),
+					'hover-effect-9' => esc_html__( 'Effect 9', 'textdomain' ),
+				],
+			]
+		);
 
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name' => 'infobox_wrapper_hover_effect_color',
+				'types' => [ 'classic', 'gradient'],
+				'selector' => '{{WRAPPER}} .ee--image-icon-box-wrapper::after',
+				'exclude'	=> ['image'],
+				'condition' => [
+					'infobox_layout_style_hover_effect' => ['hover-effect-1', 'hover-effect-2', 'hover-effect-3', 'hover-effect-4', 'hover-effect-5', 'hover-effect-6', 'hover-effect-7', 'hover-effect-8', 'hover-effect-9'],
+				],
+			]
+		);
 
 
 
@@ -112,7 +145,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'infobox-label',
+			'infobox_label',
 			[
 				'label' => esc_html__( 'Show Label', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
@@ -124,13 +157,13 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'infobox-label-title',
+			'infobox_label_title',
 			[
 				'label' => esc_html__( 'Label Text', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'default' => esc_html__( 'New', 'papanbiswasbd' ),
 				'condition' => [
-					'infobox-label' => 'yes',
+					'infobox_label' => 'yes',
 				],
 			]
 		);
@@ -150,7 +183,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'infobox-icon-image',
+			'infobox_icon_image',
 			[
 				'label' => esc_html__( 'Choose Option', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
@@ -175,7 +208,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 
 
 		$this->add_control(
-			'infobox-icon',
+			'infobox_icon',
 			[
 				'label' => esc_html__( 'Icon', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::ICONS,
@@ -184,12 +217,12 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					'library' => 'fa-regular',
 				],
 				'condition' => [
-					'infobox-icon-image' => 'icon',
+					'infobox_icon_image' => 'icon',
 				],
 			]
 		);
 		$this->add_control(
-			'infobox-image',
+			'infobox_image_icon',
 			[
 				'label' => esc_html__( 'Choose Image', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
@@ -197,7 +230,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
 				],
 				'condition' => [
-					'infobox-icon-image' => 'image',
+					'infobox_icon_image' => 'image',
 				],
 			]
 		);
@@ -223,7 +256,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 			]
 		);
 		$this->add_control(
-			'infobox-button',
+			'infobox_button',
 			[
 				'label' => esc_html__( 'Enable Button', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
@@ -245,13 +278,13 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				),
 				'skin'             => 'inline',
 				'condition' => [
-					'infobox-button' => 'yes',
+					'infobox_button' => 'yes',
 				],
 				
 			)
 		);
 		$this->add_control(
-			'infobox-icon-position',
+			'infobox_icon_position',
 			[
 				'label' => esc_html__( 'Icon Position', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
@@ -268,18 +301,18 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				'default' => 'left',
 				'toggle' => false,
 				'condition' => [
-					'infobox-button' => 'yes',
+					'infobox_button' => 'yes',
 				],
 			]
 		);
 		$this->add_control(
-			'infobox-button-title',
+			'infobox_button_title',
 			[
 				'label' => esc_html__( 'Button Text', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'default' => esc_html__( 'Learn More', 'papanbiswasbd' ),
 				'condition' => [
-					'infobox-button' => 'yes',
+					'infobox_button' => 'yes',
 				],
 			]
 		);
@@ -297,7 +330,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				],
 				'label_block' => true,
 				'condition' => [
-					'infobox-button' => 'yes',
+					'infobox_button' => 'yes',
 				],
 			]
 		);
@@ -359,7 +392,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				]
 			);
 			$this->add_control(
-				'infobox-wrapper-padding',
+				'infobox_wrapper_padding',
 				[
 					'label' => esc_html__( 'Padding', 'papanbiswasbd' ),
 					'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -414,13 +447,13 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 		$this->add_group_control(
 			\Elementor\Group_Control_Background::get_type(),
 			[
-				'name' => 'background-hover',
+				'name' => 'background_hover',
 				'types' => [ 'classic', 'gradient', 'video' ],
 				'selector' => '{{WRAPPER}} .ee--image-icon-box-wrapper:hover',
 			]
 		);
 		$this->add_control(
-			'infobox-wrapper-padding-hover',
+			'infobox_wrapper_padding_hover',
 			[
 				'label' => esc_html__( 'Padding', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -436,7 +469,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 		$this->add_group_control(
 			\Elementor\Group_Control_Border::get_type(),
 			[
-				'name' => 'border-hover',
+				'name' => 'border_hover',
 				'selector' => '{{WRAPPER}} .ee--image-icon-box-wrapper:hover',
 			]
 		);
@@ -458,14 +491,14 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Label Style', 'papanbiswasbd' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 				'condition' => [
-					'infobox-label' => 'yes',
+					'infobox_label' => 'yes',
 				],
 			]
 		);
 
 
 		$this->add_control(
-				'infobox-label-padding',
+				'infobox_label_padding',
 				[
 					'label' => esc_html__( 'Padding', 'papanbiswasbd' ),
 					'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -479,7 +512,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				]
 			);
 			$this->add_control(
-				'infobox-label-margin',
+				'infobox_label_margin',
 				[
 					'label' => esc_html__( 'Margin', 'papanbiswasbd' ),
 					'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -520,7 +553,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				]
 			);
 			$this->add_control(
-				'infobox-label-border-radius',
+				'infobox_label_border_radius',
 				[
 					'label' => esc_html__( 'Border Radius', 'papanbiswasbd' ),
 					'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -556,7 +589,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Icon Style', 'papanbiswasbd' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 				'condition' => [
-					'infobox-icon-image' => 'icon',
+					'infobox_icon_image' => 'icon',
 				],
 			]
 		);
@@ -611,7 +644,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				);
 
 				$this->add_control(
-					'infobox-icon-padding',
+					'infobox_icon_padding',
 					[
 						'label' => esc_html__( 'Padding', 'papanbiswasbd' ),
 						'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -625,7 +658,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					]
 				);
 				$this->add_control(
-					'infobox-icon-margin',
+					'infobox_icon_margin',
 					[
 						'label' => esc_html__( 'Margin', 'papanbiswasbd' ),
 						'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -666,7 +699,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					]
 				);
 				$this->add_control(
-					'infobox-icon-border-radius',
+					'infobox_icon-border-radius',
 					[
 						'label' => esc_html__( 'Border Radius', 'papanbiswasbd' ),
 						'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -738,7 +771,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					]
 				);
 				$this->add_control(
-					'infobox-icon-padding-hover',
+					'infobox_icon_padding_hover',
 					[
 						'label' => esc_html__( 'Padding', 'papanbiswasbd' ),
 						'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -779,7 +812,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					]
 				);
 				$this->add_control(
-					'infobox-icon-border-radius_hover',
+					'infobox_icon-border_radius_hover',
 					[
 						'label' => esc_html__( 'Border Radius', 'papanbiswasbd' ),
 						'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -820,7 +853,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Image Style', 'papanbiswasbd' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 				'condition' => [
-					'infobox-icon-image' => 'image',
+					'infobox_icon_image' => 'image',
 				],
 			]
 		);
@@ -895,7 +928,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					]
 				);
 				$this->add_control(
-					'infobox-image-padding',
+					'infobox_image-padding',
 					[
 						'label' => esc_html__( 'Padding', 'papanbiswasbd' ),
 						'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -909,7 +942,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					]
 				);
 				$this->add_control(
-					'infobox-image-margin',
+					'infobox_image-margin',
 					[
 						'label' => esc_html__( 'Margin', 'papanbiswasbd' ),
 						'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -940,7 +973,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					]
 				);
 				$this->add_control(
-					'infobox-image-border-radius',
+					'infobox_image-border-radius',
 					[
 						'label' => esc_html__( 'Border Radius', 'papanbiswasbd' ),
 						'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1034,7 +1067,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					]
 				);
 				$this->add_control(
-					'infobox-image-padding-hover',
+					'infobox_image-padding-hover',
 					[
 						'label' => esc_html__( 'Padding', 'papanbiswasbd' ),
 						'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1048,7 +1081,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					]
 				);
 				$this->add_control(
-					'infobox-image-margin-hover',
+					'infobox_image-margin-hover',
 					[
 						'label' => esc_html__( 'Margin', 'papanbiswasbd' ),
 						'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1079,7 +1112,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					]
 				);
 				$this->add_control(
-					'infobox-image-border-radius-hover',
+					'infobox_image-border-radius-hover',
 					[
 						'label' => esc_html__( 'Border Radius', 'papanbiswasbd' ),
 						'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1312,7 +1345,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'infobox-desc-padding',
+			'infobox_desc_padding',
 			[
 				'label' => esc_html__( 'Padding', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1326,7 +1359,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 			]
 		);
 		$this->add_control(
-			'infobox-desc-margin',
+			'infobox_desc_margin',
 			[
 				'label' => esc_html__( 'Margin', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1348,7 +1381,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 			]
 		);
 		$this->add_control(
-			'infobox-desc-border-radius',
+			'infobox_desc_border_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1374,7 +1407,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Button Style', 'papanbiswasbd' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 				'condition' => [
-					'infobox-button' => 'yes',
+					'infobox_button' => 'yes',
 				],
 			]
 		);
@@ -1436,7 +1469,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 
 
 		$this->add_control(
-			'infobox-button-padding',
+			'infobox_button_padding',
 			[
 				'label' => esc_html__( 'Padding', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1450,7 +1483,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 			]
 		);
 		$this->add_control(
-			'infobox-button-margin',
+			'infobox_button_margin',
 			[
 				'label' => esc_html__( 'Margin', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1472,7 +1505,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 			]
 		);
 		$this->add_control(
-			'infobox-button-border-radius',
+			'infobox_button_border_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1537,7 +1570,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					'{{WRAPPER}} .ee-button' => 'gap: {{SIZE}}{{UNIT}};',
 				],
 				'condition' => [
-					'infobox-icon-position' => 'left',
+					'infobox_icon_position' => 'left',
 				],
 			]
 		);
@@ -1558,7 +1591,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					'{{WRAPPER}} .ee-button' => 'gap: {{SIZE}}{{UNIT}};',
 				],
 				'condition' => [
-					'infobox-icon-position' => 'right',
+					'infobox_icon_position' => 'right',
 				],
 			]
 		);
@@ -1612,7 +1645,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 
 
 		$this->add_control(
-			'infobox-button-padding-hover',
+			'infobox_button_padding_hover',
 			[
 				'label' => esc_html__( 'Padding', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1626,7 +1659,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 			]
 		);
 		$this->add_control(
-			'infobox-button-margin-hover',
+			'infobox_button_margin_hover',
 			[
 				'label' => esc_html__( 'Margin', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1648,7 +1681,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 			]
 		);
 		$this->add_control(
-			'infobox-button-border-radius-hover',
+			'infobox_button_border_radius-hover',
 			[
 				'label' => esc_html__( 'Border Radius', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1718,26 +1751,27 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 		$style_1 = $settings['infobox_layout_style'];
+		$hover_effect_1 = $settings['infobox_layout_style_hover_effect'];
 
 
 		?>
 
 
-			<div class="ee--common-card ee--main ee--image-icon-box-wrapper <?php echo $style_1;?>">
-				<?php	if ( 'yes' === $settings['infobox-label'] ) {
-					echo '<span class="ee--image-icon-box-label">' . $settings['infobox-label-title'] . '</span>';
+			<div class="ee--common-card ee--main ee--image-icon-box-wrapper <?php echo $style_1;?> <?php echo $hover_effect_1;?>">
+				<?php	if ( 'yes' === $settings['infobox_label'] ) {
+					echo '<span class="ee--image-icon-box-label">' . $settings['infobox_label_title'] . '</span>';
 				} ?>
 				<?php if ( 'style-2' === $settings['infobox_layout_style'] ) {?>
 					<?php echo '<div class="ee--infobox-primary-image"><img src="' . $settings['infobox_image']['url'] . '" alt=""></div>';?>
 				<?php }?>
 
-				<?php if ( 'icon' === $settings['infobox-icon-image'] ) {
+				<?php if ( 'icon' === $settings['infobox_icon_image'] ) {
 					echo '<div class="ee--image-icon-main">'?> 
-						<?php \Elementor\Icons_Manager::render_icon( $settings['infobox-icon'], [ 'aria-hidden' => 'true' ] ); ?>
+						<?php \Elementor\Icons_Manager::render_icon( $settings['infobox_icon'], [ 'aria-hidden' => 'true' ] ); ?>
 					<?php echo '</div>';
 					}
-					if ( 'image' === $settings['infobox-icon-image'] ) {
-					echo '<div class="ee--image-icon-main-image"><img src="' . $settings['infobox-image']['url'] . '" alt=""></div>';
+					if ( 'image' === $settings['infobox_icon_image'] ) {
+					echo '<div class="ee--image-icon-main-image"><img src="' . $settings['infobox_image_icon']['url'] . '" alt=""></div>';
 				} ?>
 
                 <div class="ee--image-icon-box-content-wrapper">
@@ -1748,13 +1782,13 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 							$this->add_link_attributes( 'infobox_button_link', $settings['infobox_button_link'] );
 						}
 					?>
-					<?php if ( 'yes' === $settings['infobox-button'] ) { ?>
+					<?php if ( 'yes' === $settings['infobox_button'] ) { ?>
 						<a <?php $this->print_render_attribute_string( 'infobox_button_link' );?> class="ee-button ee--image-icon-box-button">
-							<?php if ( 'left' === $settings['infobox-icon-position'] ) { ?>
+							<?php if ( 'left' === $settings['infobox_icon_position'] ) { ?>
 								<span class="ee--button-icon"><?php \Elementor\Icons_Manager::render_icon( $settings['imagebox_selected_icon'], [ 'aria-hidden' => 'true' ] ); ?></span>
 							<?php }?>
-								<?php echo $settings['infobox-button-title']; ?>
-							<?php if ( 'right' === $settings['infobox-icon-position'] ) { ?>
+								<?php echo $settings['infobox_button_title']; ?>
+							<?php if ( 'right' === $settings['infobox_icon_position'] ) { ?>
 								<span class="ee--button-icon"><?php \Elementor\Icons_Manager::render_icon( $settings['imagebox_selected_icon'], [ 'aria-hidden' => 'true' ] ); ?></span>
 							<?php }?>
 						</a>
