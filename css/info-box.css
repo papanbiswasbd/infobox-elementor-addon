@@ -21,8 +21,8 @@ span.ee--button-icon i {
 }
 .ee--common-card {
     padding: 20px;
-    border: 1px solid #f1eeff;
     border-radius: 4px;
+    border: 1px solid #f1eeff;
 }
 
 .container {
@@ -68,9 +68,19 @@ span.ee--image-icon-box-label {
 .ee--image-icon-main-image img{
     width: 120px;
 }
+.ee--image-icon-main-image {
+    transition: 0.3s;
+}
 .ee--image-icon-box-heading {
     display: inline-block;
     font-size: 26px;
+    margin-bottom: 8px;
+}
+.ee--image-icon-box-subtitle {
+    font-size: 18px;
+    color: #858585;
+    margin-top: 0;
+    margin-bottom: 8px;
 }
 .ee--button-icon {
     display: inline-block;
@@ -87,6 +97,7 @@ span.ee--image-icon-box-label {
 .ee--image-icon-box-wrapper::after{
     background: #824deb;
     transition: 0.3s;
+    z-index: -1;
 }
 .hover-effect-1.ee--image-icon-box-wrapper::after {
     content: '';
@@ -133,7 +144,6 @@ span.ee--image-icon-box-label {
     left: 0;
     bottom: 0;
     border-radius: 4px;
-    z-index: -1;
 }
 .hover-effect-4.ee--image-icon-box-wrapper:hover::after{
     height: 100%;
@@ -146,7 +156,6 @@ span.ee--image-icon-box-label {
     left: 0;
     top: 0;
     border-radius: 4px;
-    z-index: -1;
 }
 .hover-effect-5.ee--image-icon-box-wrapper:hover::after{
     height: 100%;
@@ -159,7 +168,6 @@ span.ee--image-icon-box-label {
     left: 0;
     bottom: 0;
     border-radius: 4px;
-    z-index: -1;
 }
 .hover-effect-6.ee--image-icon-box-wrapper:hover::after{
     width: 100%;
@@ -172,7 +180,6 @@ span.ee--image-icon-box-label {
     right: 0;
     bottom: 0;
     border-radius: 4px;
-    z-index: -1;
 }
 .hover-effect-7.ee--image-icon-box-wrapper:hover::after{
     width: 100%;
@@ -186,7 +193,6 @@ span.ee--image-icon-box-label {
     transform: translateX(-50%);
     bottom: 0;
     border-radius: 4px;
-    z-index: -1;
 }
 .hover-effect-8.ee--image-icon-box-wrapper:hover::after{
     width: 100%;
@@ -200,12 +206,55 @@ span.ee--image-icon-box-label {
     transform: translateY(50%);
     bottom: 50%;
     border-radius: 4px;
-    z-index: -1;
 }
 .hover-effect-9.ee--image-icon-box-wrapper:hover::after{
     height: 100%;
 }
+.hover-effect-10.ee--image-icon-box-wrapper::after {
+    content: '';
+    position: absolute;
+    transform-origin: center center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transform: scale(0);
+    transition: 0.3s;
+}
+.hover-effect-10.ee--image-icon-box-wrapper:hover::after {
+    transform: scale(1);
+}
 
+
+/*****************Social Style**********************/
+.infobox-social-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 15px;
+}
+.infobox-social-icon-wrapper a {
+    font-size: 18px;
+    background: #f1eeff;
+    color: #824deb;
+    fill: #824deb;
+    padding: 10px;
+    text-align: center;
+    line-height: 0;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+.infobox-social-icon-wrapper a:hover {
+    background: #824deb;
+    color: #f1eeff;
+    fill: #f1eeff;
+}
+.infobox-social-icon-single svg{
+    width: 20px;
+    height: 20px;
+}
 
 
 
@@ -228,3 +277,5 @@ Infobox Style 2
 .style-2:hover .ee--infobox-primary-image img {
     scale: 1.2;
 }
+
+

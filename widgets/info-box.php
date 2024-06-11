@@ -113,6 +113,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					'hover-effect-7' => esc_html__( 'Effect 7', 'textdomain' ),
 					'hover-effect-8' => esc_html__( 'Effect 8', 'textdomain' ),
 					'hover-effect-9' => esc_html__( 'Effect 9', 'textdomain' ),
+					'hover-effect-10' => esc_html__( 'Effect 10', 'textdomain' ),
 				],
 			]
 		);
@@ -124,9 +125,8 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				'name' => 'infobox_wrapper_hover_effect_color',
 				'types' => [ 'classic', 'gradient'],
 				'selector' => '{{WRAPPER}} .ee--image-icon-box-wrapper::after',
-				'exclude'	=> ['image'],
 				'condition' => [
-					'infobox_layout_style_hover_effect' => ['hover-effect-1', 'hover-effect-2', 'hover-effect-3', 'hover-effect-4', 'hover-effect-5', 'hover-effect-6', 'hover-effect-7', 'hover-effect-8', 'hover-effect-9'],
+					'infobox_layout_style_hover_effect' => ['hover-effect-1', 'hover-effect-2', 'hover-effect-3', 'hover-effect-4', 'hover-effect-5', 'hover-effect-6', 'hover-effect-7', 'hover-effect-8', 'hover-effect-9', 'hover-effect-10'],
 				],
 			]
 		);
@@ -171,13 +171,13 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'infobox_image',
 			[
-				'label' => esc_html__( 'Choose Image', 'textdomain' ),
+				'label' => esc_html__( 'Choose Cover Image', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
 				],
 				'condition' => [
-					'infobox_layout_style' => 'style-2',
+					'infobox_layout_style' => ['style-2', 'style-3'],
 				],
 			]
 		);
@@ -243,6 +243,30 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				'default' => esc_html__( 'This is Awesome', 'papanbiswasbd' ),
 				'placeholder' => esc_html__( 'Type Info Box Title', 'papanbiswasbd' ),
 				'label_block' => true,
+			]
+		);
+		$this->add_control(
+			'infobox_subtitle_switcher',
+			[
+				'label' => esc_html__( 'Enable Subtitle', 'papanbiswasbd' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Show', 'papanbiswasbd' ),
+				'label_off' => esc_html__( 'Hide', 'papanbiswasbd' ),
+				'return_value' => 'yes',
+				'default' => 'no',
+			]
+		);
+		$this->add_control(
+			'infobox_subtitle',
+			[
+				'label' => esc_html__( 'Subtitle', 'papanbiswasbd' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'This is Awesome Subtitle', 'papanbiswasbd' ),
+				'placeholder' => esc_html__( 'Type subtitle here', 'papanbiswasbd' ),
+				'label_block' => true,
+				'condition' => [
+					'infobox_subtitle_switcher' => 'yes',
+				],
 			]
 		);
 		$this->add_control(
@@ -337,6 +361,145 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 
 
 		$this->end_controls_section();
+
+
+		$this->start_controls_section(
+			'infobox_social_icon_style',
+			[
+				'label' => __( 'Social Icon', 'infobox-elementor-addon' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+
+
+		$this->add_control(
+			'social_icon_swithcer',
+			[
+				'label' => esc_html__( 'Show Label', 'papanbiswasbd' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Show', 'papanbiswasbd' ),
+				'label_off' => esc_html__( 'Hide', 'papanbiswasbd' ),
+				'return_value' => 'yes',
+				'default' => 'no',
+			]
+		);
+		
+		$this->add_control(
+			'infobox_social_icons',
+			[
+				'label' => esc_html__( 'Social Icons', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'condition' => [
+					'social_icon_swithcer' => 'yes',
+				],
+				'fields' => [
+					[
+						'name' => 'infobox_social_icon_item',
+						'label' => esc_html__( 'Icon', 'textdomain' ),
+						'type' => \Elementor\Controls_Manager::ICONS,
+						'fa4compatibility'      => 'social_icon',
+						'default' => [
+							'value' => 'fab fa-facebook-f',
+							'library' => 'fa-brands',
+						],
+						'recommended' => [
+							'fa-brands' => [
+								'android',
+								'apple',
+								'behance',
+								'bitbucket',
+								'codepen',
+								'delicious',
+								'deviantart',
+								'digg',
+								'dribbble',
+								'elementor',
+								'facebook',
+								'flickr',
+								'foursquare',
+								'free-code-camp',
+								'github',
+								'gitlab',
+								'globe',
+								'google-plus',
+								'houzz',
+								'instagram',
+								'jsfiddle',
+								'linkedin',
+								'medium',
+								'meetup',
+								'mixcloud',
+								'odnoklassniki',
+								'pinterest',
+								'product-hunt',
+								'reddit',
+								'shopping-cart',
+								'skype',
+								'slideshare',
+								'snapchat',
+								'soundcloud',
+								'spotify',
+								'stack-overflow',
+								'steam',
+								'stumbleupon',
+								'telegram',
+								'thumb-tack',
+								'tripadvisor',
+								'tumblr',
+								'twitch',
+								'twitter',
+								'viber',
+								'vimeo',
+								'vk',
+								'weibo',
+								'weixin',
+								'whatsapp',
+								'wordpress',
+								'xing',
+								'yelp',
+								'youtube',
+								'500px',
+							],
+							'fa-solid' => [
+								'envelope',
+								'link',
+								'rss',
+							],
+						],
+					],
+					[
+						'name' => 'list_title_link',
+						'label' => esc_html__( 'Link', 'textdomain' ),
+						'type' => \Elementor\Controls_Manager::URL,
+						'options' => [ 'url', 'is_external', 'nofollow' ],
+						'default' => [
+							'url' => '#',
+							'is_external' => false,
+							'nofollow' => false,
+							// 'custom_attributes' => '',
+						],
+						'label_block' => true,
+					],
+
+
+
+				],
+				'default' => [
+					[
+						'list_title' => esc_html__( 'Social Icon', 'textdomain' ),
+						
+					],
+				],
+				'title_field' => '{{{ list_title }}}',
+			]
+		);
+
+
+
+		$this->end_controls_section();
+		
+
 
 
 
@@ -667,7 +830,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 							'isLinked' => true,
 						],
 						'selectors' => [
-							'{{WRAPPER}} .ee--image-icon-main' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+							'{{WRAPPER}} .ee--image-icon-main-wrap' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 						],
 					]
 				);
@@ -928,6 +1091,23 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					]
 				);
 				$this->add_control(
+					'infobox_image_rotation',
+					[
+						'label' => esc_html__( 'Icon Rotation', 'papanbiswasbd' ),
+						'type' => \Elementor\Controls_Manager::SLIDER,
+						'range' => [
+							'px' => [
+								'min' => 1,
+								'max' => 360,
+								'step' => 1,
+							],
+						],
+						'selectors' => [
+							'{{WRAPPER}} .ee--image-icon-main-image' => 'transform: rotate({{SIZE}}deg);',
+						],
+					]
+				);
+				$this->add_control(
 					'infobox_image-padding',
 					[
 						'label' => esc_html__( 'Padding', 'papanbiswasbd' ),
@@ -1067,6 +1247,23 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					]
 				);
 				$this->add_control(
+					'infobox_image_rotation_hover',
+					[
+						'label' => esc_html__( 'Icon Rotation', 'papanbiswasbd' ),
+						'type' => \Elementor\Controls_Manager::SLIDER,
+						'range' => [
+							'px' => [
+								'min' => 1,
+								'max' => 360,
+								'step' => 1,
+							],
+						],
+						'selectors' => [
+							'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-main-image' => 'transform: rotate({{SIZE}}deg);',
+						],
+					]
+				);
+				$this->add_control(
 					'infobox_image-padding-hover',
 					[
 						'label' => esc_html__( 'Padding', 'papanbiswasbd' ),
@@ -1186,36 +1383,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				],
 			]
 		);
-		$this->add_control(
-			'infobox_title_bg_color',
-			[
-				'label' => esc_html__( 'Title BG Color', 'papanbiswasbd' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ee--image-icon-box-heading' => 'background: {{VALUE}}',
-				],
-			]
-		);
-		$this->add_control(
-			'infobox_title_hover_bg_color',
-			[
-				'label' => esc_html__( 'Title BG Hover Color', 'papanbiswasbd' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-heading' => 'background: {{VALUE}}',
-				],
-			]
-		);
-		$this->add_control(
-			'infobox_title_hover_border_color',
-			[
-				'label' => esc_html__( 'Title Border Hover Color', 'papanbiswasbd' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-heading' => 'border-color: {{VALUE}}',
-				],
-			]
-		);
+
 
 		$this->add_control(
 			'infobox-title-padding',
@@ -1246,27 +1414,81 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
-		$this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
+
+
+		$this->end_controls_tab();
+
+
+		$this->start_controls_tab(
+			'style_normal_tab_subtitle',
 			[
-				'name' => 'infobox_title_border',
-				'selector' => '{{WRAPPER}} .ee--image-icon-box-heading',
+				'label' => esc_html__( 'Subtitle', 'papanbiswasbd' ),
+				'condition' => [
+					'infobox_subtitle_switcher' => 'yes',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'infobox_subtitle_typography',
+				'selector' => '{{WRAPPER}} .ee--image-icon-box-subtitle',
 			]
 		);
 		$this->add_control(
-			'infobox-title-border-radius',
+			'infobox_subtitle_color',
 			[
-				'label' => esc_html__( 'Border Radius', 'papanbiswasbd' ),
+				'label' => esc_html__( 'Subtitle Color', 'papanbiswasbd' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-subtitle' => 'color: {{VALUE}}',
+				],
+			]
+		);
+		$this->add_control(
+			'infobox_hover_subtitle_color',
+			[
+				'label' => esc_html__( 'Subtitle Hover Color', 'papanbiswasbd' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-subtitle' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+
+		$this->add_control(
+			'infobox-subtitle-padding',
+			[
+				'label' => esc_html__( 'Padding', 'papanbiswasbd' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'default' => [
 					'isLinked' => true,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ee--image-icon-box-heading' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ee--image-icon-box-subtitle' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
+		$this->add_control(
+			'infobox-subtitle-margin',
+			[
+				'label' => esc_html__( 'Margin', 'papanbiswasbd' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .ee--image-icon-box-subtitle' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+
+
 		$this->end_controls_tab();
 
 
@@ -1313,36 +1535,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 				],
 			]
 		);
-		$this->add_control(
-			'infobox_desc_bg_color',
-			[
-				'label' => esc_html__( 'Description BG Color', 'papanbiswasbd' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ee--image-icon-box-content' => 'background: {{VALUE}}',
-				],
-			]
-		);
-		$this->add_control(
-			'infobox_desc_hover_bg_color',
-			[
-				'label' => esc_html__( 'Desc BG Hover Color', 'papanbiswasbd' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-content' => 'background: {{VALUE}}',
-				],
-			]
-		);
-		$this->add_control(
-			'infobox_desc_hover_border_color',
-			[
-				'label' => esc_html__( 'Desc Border Hover Color', 'papanbiswasbd' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .ee--image-icon-box-wrapper:hover .ee--image-icon-box-content' => 'border-color: {{VALUE}}',
-				],
-			]
-		);
+
 
 		$this->add_control(
 			'infobox_desc_padding',
@@ -1373,27 +1566,6 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
-		$this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
-			[
-				'name' => 'infobox_desc_border',
-				'selector' => '{{WRAPPER}} .ee--image-icon-box-content',
-			]
-		);
-		$this->add_control(
-			'infobox_desc_border_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'papanbiswasbd' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'default' => [
-					'isLinked' => true,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .ee--image-icon-box-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
 
 
 		$this->end_controls_tab();
@@ -1492,7 +1664,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 					'isLinked' => true,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .ee--image-icon-box-button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ee--image-icon-box-button-wrap' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -1756,26 +1928,32 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 
 		?>
 
-
+		<?php if ( 'style-2' === $settings['infobox_layout_style'] || 'style-1' === $settings['infobox_layout_style'] || 'style-3' === $settings['infobox_layout_style'] ) {?>
 			<div class="ee--common-card ee--main ee--image-icon-box-wrapper <?php echo $style_1;?> <?php echo $hover_effect_1;?>">
 				<?php	if ( 'yes' === $settings['infobox_label'] ) {
 					echo '<span class="ee--image-icon-box-label">' . $settings['infobox_label_title'] . '</span>';
 				} ?>
 				<?php if ( 'style-2' === $settings['infobox_layout_style'] ) {?>
+					
 					<?php echo '<div class="ee--infobox-primary-image"><img src="' . $settings['infobox_image']['url'] . '" alt=""></div>';?>
+
 				<?php }?>
 
 				<?php if ( 'icon' === $settings['infobox_icon_image'] ) {
-					echo '<div class="ee--image-icon-main">'?> 
+					echo '<div class="ee--image-icon-main-wrap"><div class="ee--image-icon-main">'?> 
 						<?php \Elementor\Icons_Manager::render_icon( $settings['infobox_icon'], [ 'aria-hidden' => 'true' ] ); ?>
-					<?php echo '</div>';
+					<?php echo '</div></div>';
 					}
 					if ( 'image' === $settings['infobox_icon_image'] ) {
 					echo '<div class="ee--image-icon-main-image"><img src="' . $settings['infobox_image_icon']['url'] . '" alt=""></div>';
+					
 				} ?>
 
                 <div class="ee--image-icon-box-content-wrapper">
                     <h2 class="ee--image-icon-box-heading"><?php echo $settings['infobox_title']; ?></h2>
+					<?php if ( 'yes' === $settings['infobox_subtitle_switcher'] ) { ?>
+                    	<h4 class="ee--image-icon-box-subtitle"><?php echo $settings['infobox_subtitle']; ?></h4>
+					<?php }?>
                     <p class="ee--image-icon-box-content"><?php echo $settings['infobox_description']; ?></p>
 					<?php
 						if ( ! empty( $settings['infobox_button_link']['url'] ) ) {
@@ -1783,26 +1961,51 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 						}
 					?>
 					<?php if ( 'yes' === $settings['infobox_button'] ) { ?>
-						<a <?php $this->print_render_attribute_string( 'infobox_button_link' );?> class="ee-button ee--image-icon-box-button">
-							<?php if ( 'left' === $settings['infobox_icon_position'] ) { ?>
-								<span class="ee--button-icon"><?php \Elementor\Icons_Manager::render_icon( $settings['imagebox_selected_icon'], [ 'aria-hidden' => 'true' ] ); ?></span>
-							<?php }?>
-								<?php echo $settings['infobox_button_title']; ?>
-							<?php if ( 'right' === $settings['infobox_icon_position'] ) { ?>
-								<span class="ee--button-icon"><?php \Elementor\Icons_Manager::render_icon( $settings['imagebox_selected_icon'], [ 'aria-hidden' => 'true' ] ); ?></span>
-							<?php }?>
-						</a>
+						<div class="ee--image-icon-box-button-wrap">
+							<a <?php $this->print_render_attribute_string( 'infobox_button_link' );?> class="ee-button ee--image-icon-box-button">
+								<?php if ( 'left' === $settings['infobox_icon_position'] ) { ?>
+									<span class="ee--button-icon"><?php \Elementor\Icons_Manager::render_icon( $settings['imagebox_selected_icon'], [ 'aria-hidden' => 'true' ] ); ?></span>
+								<?php }?>
+									<?php echo $settings['infobox_button_title']; ?>
+								<?php if ( 'right' === $settings['infobox_icon_position'] ) { ?>
+									<span class="ee--button-icon"><?php \Elementor\Icons_Manager::render_icon( $settings['imagebox_selected_icon'], [ 'aria-hidden' => 'true' ] ); ?></span>
+								<?php }?>
+							</a>
+						</div>
 					<?php }?>
+
+					<?php
+					
+					if ( $settings['infobox_social_icons'] ) {
+						echo '<div class="infobox-social-icon-wrapper">';
+						foreach (  $settings['infobox_social_icons'] as $item ) {
+							?>							
+							<a href="#" class="infobox-social-icon-single">
+								<?php \Elementor\Icons_Manager::render_icon( $item['infobox_social_icon_item'], [ 'aria-hidden' => 'true' ] ); ?>
+							</a>						
+							<?php
+						}
+						echo '</div>';
+					}
+					
+					
+					?>
                 </div>
-            </div>
+			</div>
+		<?php }?>
+		 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 
-		
-
-
-
-
-		<?php if ( 'style_2' === $settings['infobox_layout_style'] ) {?><?php echo "Style 2 Coming Soon"?><?php }?>
-		<?php if ( 'style_3' === $settings['infobox_layout_style'] ) {?><?php echo "Style 3 Coming Soon"?><?php }?>
 		<?php if ( 'style_4' === $settings['infobox_layout_style'] ) {?><?php echo "Style 4 Coming Soon"?><?php }?>
 		<?php if ( 'style_5' === $settings['infobox_layout_style'] ) {?><?php echo "Style 5 Coming Soon"?><?php }?>
 
