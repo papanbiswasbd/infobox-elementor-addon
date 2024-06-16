@@ -1972,6 +1972,7 @@ class Info_Box_Widget extends \Elementor\Widget_Base {
 								<?php }?>
 							</a>
 						</div>
+						
 					<?php }?>
 
 					<?php

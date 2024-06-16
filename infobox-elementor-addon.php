@@ -195,6 +195,9 @@ final class IEA {
         // Register Widget Scripts
 		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'widget_scripts' ] );
 
+		// Elementor Extender
+		require __DIR__ . '/inc/elmentor-extender.php';
+
     }
     
     /**
@@ -211,6 +214,7 @@ final class IEA {
 		// wp_enqueue_style( 'widget-2', plugins_url( 'css/widget-2.css', __FILE__ ) );
 
       //  wp_enqueue_style( 'Hello World', plugins_url( 'css/hello-world.css', __FILE__ ) );
+        wp_enqueue_style( 'Elementor Extend', plugins_url( 'css/elementor-extend.css', __FILE__ ) );
         wp_enqueue_style( 'Info Box', plugins_url( 'css/info-box.css', __FILE__ ) );
     }
     
